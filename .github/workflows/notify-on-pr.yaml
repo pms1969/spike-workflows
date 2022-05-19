@@ -8,6 +8,7 @@ jobs:
     steps:
       - name: NotifyOpsGenie
         run: |
+          set -e
           cat << EOF > contents.json
           {
               "message": "${GITHUB_EVENT_NAME} raised against ${GITHUB_REPOSITORY}",
