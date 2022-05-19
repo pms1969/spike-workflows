@@ -12,7 +12,7 @@ jobs:
           cat << EOF > contents.json
           {
               "message": "${GITHUB_EVENT_NAME} raised against ${GITHUB_REPOSITORY}",
-              "alias": "${GITHUB_REPOSITORY}/${GITHUB_REF}",
+              "alias": "${GITHUB_REPOSITORY}_${GITHUB_REF}",
               "description": "${GITHUB_EVENT_NAME} raised against ${GITHUB_REPOSITORY}",
               "details":
                   {
@@ -44,7 +44,7 @@ jobs:
           }
           EOF
 
-          curl -X POST https://api.opsgenie.com/v2/alerts \
+          curl -s -X POST https://api.opsgenie.com/v2/alerts \
               -H "Content-Type: application/json" \
               -H "Authorization: GenieKey ${{ secrets.OPSGENIE_TOKEN }}" \
               -d "@contents.json"
