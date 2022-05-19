@@ -36,11 +36,12 @@ jobs:
                       "GITHUB_GRAPHQL_URL": "$GITHUB_GRAPHQL_URL"
                   },
               "priority":"P5",
-              "responders": 
+              "responders": [
                   {
                       "username":"paul.saunders@finbourne.com",
                       "type":"user"
                   }
+              ]
           }
           EOF
 
