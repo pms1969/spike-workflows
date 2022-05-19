@@ -12,7 +12,7 @@ jobs:
           cat << EOF > contents.json
           {
               "message": "${GITHUB_EVENT_NAME} raised against ${GITHUB_REPOSITORY}",
-              "alias": "${GITHUB_REPOSITORY}_${GITHUB_REF}",
+              "alias": "${GITHUB_REPOSITORY}/${GITHUB_REF}",
               "description": "${GITHUB_EVENT_NAME} raised against ${GITHUB_REPOSITORY}",
               "details":
                   {
