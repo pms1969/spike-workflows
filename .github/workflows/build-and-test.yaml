@@ -20,7 +20,7 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
     timeout-minutes: 3
-    environment: ${{ github.event.inputs.environment }}
+    # environment: ${{ github.event.inputs.environment }}
 
     steps:
       - name: Fork based /LGTM checkout
@@ -32,8 +32,8 @@ jobs:
         env:
           API_URL: ${{ secrets.URI }}
           ACCESS_TOKEN: ${{ secrets.TOKEN }}
-          INPUT_API_URL: ${{ github.event.inputs..URI }}
-          INPUT_ACCESS_TOKEN: ${{ github.event.inputs..TOKEN }}
+          INPUT_API_URL: ${{ github.event.inputs.uri }}
+          INPUT_ACCESS_TOKEN: ${{ github.event.inputs.token }}
         run: |
           echo "env variables for DEVELOP have been set"
           echo "Changing directory into sdk directory"
