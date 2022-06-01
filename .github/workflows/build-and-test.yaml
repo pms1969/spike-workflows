@@ -1,0 +1,26 @@
+name: build-and-test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    environment: ${{ github.event.client_payload.environment }}
+
+    steps:
+      - name: Fork based /LGTM checkout
+        uses: actions/checkout@v2
+        with:
+          ref: "refs/pull/${{ github.event.client_payload.pull_request.number }}/merge"
+
+      - name: Run tests on DEVELOP branch
+        env:
+          API_URL: ${{ secrets.URI }}
+          ACCESS_TOKEN: ${{ secrets.TOKEN }}
+        run: |
+          echo "env variables for DEVELOP have been set"
+          echo "Changing directory into sdk directory"
+          echo URI $API_URL
+          echo TOKEN $ACCESS_TOKEN
