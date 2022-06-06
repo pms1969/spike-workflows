@@ -88,7 +88,7 @@ jobs:
               repo: context.repo.repo,
               run_id: "${{ github.run_id }}"
             });
-            console.log(jobs);
+
             await github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
