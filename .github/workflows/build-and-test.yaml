@@ -98,7 +98,7 @@ jobs:
               completed_at: date.toISOString(),
 
               external_id: "${{ github.run_id }}",
-              details_url: "${{ resp.data.jobs[0].html_url }}",
+              details_url: resp.data.jobs[0].html_url,
               status: "completed",
               conclusion: "${{steps.run_tests.conclusion}}",
 
