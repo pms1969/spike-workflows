@@ -83,9 +83,14 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const date = new Date();
-            console.log('${{github}}')
-            core.info("${{github}}")
-            var jobs = await github.rest.actions.getWorkflowRuns
+            console.log(github)
+            core.info(github)
+            var jobs = await github.rest.actions.getWorkflowRuns({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: github.run_id
+            });
+            console.log(jobs);
             await github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
