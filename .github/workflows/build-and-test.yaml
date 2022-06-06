@@ -3,10 +3,10 @@ name: build-and-test
 on:
   workflow_dispatch:
     inputs:
-      # environment:
-      #   type: environment
-      #   required: true
-      #   description: The environment.
+      pull_request:
+        type: string
+        required: true
+        description: The PR number.
       token:
         type: string
         required: true
@@ -25,8 +25,8 @@ jobs:
     steps:
       - name: Fork based /LGTM checkout
         uses: actions/checkout@v2
-        # with:
-        #   ref: "refs/pull/${{ github.event.event.ref }}/merge"
+        with:
+          ref: "refs/pull/${{ github.event.inputs.pull_request }}/merge"
 
       - name: Run tests on DEVELOP branch
         env:
@@ -41,3 +41,6 @@ jobs:
           echo TOKEN $ACCESS_TOKEN
           echo INPUT_URI $INPUT_API_URL
           echo INPUT_TOKEN $INPUT_ACCESS_TOKEN
+          echo
+          echo
+          cat README.md
