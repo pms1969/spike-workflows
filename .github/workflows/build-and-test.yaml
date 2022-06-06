@@ -72,6 +72,7 @@ jobs:
           echo
           echo
           cat README.md
+          exit 1
         env:
           INPUT_API_URL: ${{ github.event.inputs.uri }}
           INPUT_ACCESS_TOKEN: ${{ github.event.inputs.token }}
