@@ -92,12 +92,14 @@ jobs:
               completed_at: date.toISOString(),
 
               external_id: "${{ github.run_id }}",
+              # https://github.com/pms1969/spike-workflows/runs/6756711530?check_suite_focus=true
+              details_url: "${{ github.server_url }}/${{ github.repository }}/runs/${{ github.run_id }}?check_suite_focus=true"
               status: "completed",
               conclusion: "${{steps.run_tests.conclusion}}",
 
               output: {
                 title: "Integration Tests",
-                summary: "Build successful",
-                text: "${{steps.run_tests.outputs.result}}"
+                summary: "Build completed and ${{steps.run_tests.conclusion}}",
+                text: "Visit the action link to see the result of this step."
               }
             });
