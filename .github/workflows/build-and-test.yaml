@@ -22,14 +22,19 @@ jobs:
     timeout-minutes: 3
 
     steps:
-      - name: Fork based /LGTM checkout
+      - name: Checkout for SHA
         uses: actions/checkout@v2
         with:
-          ref: "refs/pull/${{ github.event.inputs.pull_request }}/merge"
+          ref: "refs/pull/${{ github.event.inputs.pull_request }}/head"
 
       - name: Get SHA
         id: vcs
         run: echo "::set-output name=sha::$(git rev-parse HEAD)"
+
+      - name: Fork based /LGTM checkout
+        uses: actions/checkout@v2
+        with:
+          ref: "refs/pull/${{ github.event.inputs.pull_request }}/merge"
 
       - name: Check Run in progress
         uses: actions/github-script@v5
