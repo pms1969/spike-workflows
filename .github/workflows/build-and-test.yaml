@@ -86,7 +86,7 @@ jobs:
             const jobs = await github.rest.actions.listJobsForWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              run_id: github.run_id
+              run_id: "${{ github.run_id }}"
             });
             console.log(jobs);
             await github.rest.checks.create({
