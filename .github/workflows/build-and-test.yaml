@@ -88,7 +88,6 @@ jobs:
               repo: context.repo.repo,
               run_id: github.run_id
             });
-            core.info(jobs);
             await github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
