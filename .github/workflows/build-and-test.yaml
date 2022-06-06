@@ -38,9 +38,9 @@ jobs:
           script: |
             const date = new Date();
             const check = await github.checks.create({
-              owner: "${{context.repo.owner}}",
-              repo: "${{context.repo.repo}}",
-              head_sha: "${{steps.vcs.outputs.sha}}",
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head_sha: "${{ steps.vcs.outputs.sha }}",
               name: "Integration Testing",
 
               started_at: date.toISOString(),
@@ -94,8 +94,8 @@ jobs:
           script: |
             const date = new Date();
             const check = await github.checks.create({
-              owner: "${{context.repo.owner}}",
-              repo: "${{context.repo.repo}}",
+              owner: context.repo.owner,
+              repo: context.repo.repo,
               head_sha: "${{steps.vcs.outputs.sha}}",
               name: "Integration Testing",
 
