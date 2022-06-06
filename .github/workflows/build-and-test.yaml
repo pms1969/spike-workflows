@@ -83,11 +83,12 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const date = new Date();
-            var jobs = await github.rest.actions.listJobsForWorkflowRun({
+            var resp = await github.rest.actions.listJobsForWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
               run_id: github.run_id
             });
+            core.info(jobs);
             await github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -96,7 +97,7 @@ jobs:
 
               completed_at: date.toISOString(),
 
-              external_id: "${{ jobs[0].html_url }}",
+              external_id: "${{ resp.jobs[0].html_url }}",
               details_url: "${{ github.server_url }}/${{ github.repository }}/runs/${{ github.run_id }}?check_suite_focus=true"
               status: "completed",
               conclusion: "${{steps.run_tests.conclusion}}",
