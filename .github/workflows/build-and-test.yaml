@@ -37,7 +37,7 @@ jobs:
           ref: "refs/pull/${{ github.event.inputs.pull_request }}/merge"
 
       - name: Check Run in progress
-        uses: actions/github-script@v5
+        uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -93,7 +93,7 @@ jobs:
           PR_NUM: ${{ github.event.inputs.pull_request }}
 
       - name: Complete check run
-        uses: actions/github-script@v5
+        uses: actions/github-script@v4
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
