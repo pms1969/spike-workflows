@@ -62,22 +62,17 @@ jobs:
 
       - name: Run tests on DEVELOP branch
         id: run_tests
-        uses: ./
-        with:
-          result-encoding: string
-          script: |
-            echo "env variables for DEVELOP have been set"
-            echo "Changing directory into sdk directory"
-            echo URI $API_URL
-            echo TOKEN $ACCESS_TOKEN
-            echo INPUT_URI $INPUT_API_URL
-            echo INPUT_TOKEN $INPUT_ACCESS_TOKEN
-            echo
-            echo
-            cat README.md
+        run: |
+          echo "env variables for DEVELOP have been set"
+          echo "Changing directory into sdk directory"
+          echo URI $API_URL
+          echo TOKEN $ACCESS_TOKEN
+          echo INPUT_URI $INPUT_API_URL
+          echo INPUT_TOKEN $INPUT_ACCESS_TOKEN
+          echo
+          echo
+          cat README.md
         env:
-          API_URL: ${{ secrets.URI }}
-          ACCESS_TOKEN: ${{ secrets.TOKEN }}
           INPUT_API_URL: ${{ github.event.inputs.uri }}
           INPUT_ACCESS_TOKEN: ${{ github.event.inputs.token }}
 
