@@ -1,0 +1,30 @@
+on:
+  pull_request:
+
+jobs:
+  create-check-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - name: Complete check run
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const date = new Date();
+            const check = await github.checks.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head_sha: context.repo.head_sha,
+              name: "Integration Testing",
+
+              completed_at: date.toISOString(),
+
+              status: "pending",
+
+              output: {
+                title: "Integration Tests",
+                summary: "Pending",
+                text: "not sure what to put here."
+              }
+            });
