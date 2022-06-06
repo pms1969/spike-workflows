@@ -37,12 +37,12 @@ jobs:
           ref: "refs/pull/${{ github.event.inputs.pull_request }}/merge"
 
       - name: Check Run in progress
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const date = new Date();
-            const check = await github.checks.create({
+            await github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               head_sha: "${{ steps.vcs.outputs.sha }}",
@@ -93,12 +93,12 @@ jobs:
           PR_NUM: ${{ github.event.inputs.pull_request }}
 
       - name: Complete check run
-        uses: actions/github-script@v4
+        uses: actions/github-script@v5
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const date = new Date();
-            const check = await github.checks.create({
+            await github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
               head_sha: "${{steps.vcs.outputs.sha}}",
@@ -106,6 +106,7 @@ jobs:
 
               completed_at: date.toISOString(),
 
+              external_id: "${{ github.run_id }}",
               status: context.steps.run_tests.outcome,
               conclusion: context.steps.run_tests.conclusion,
 
