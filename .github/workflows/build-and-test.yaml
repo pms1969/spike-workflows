@@ -108,7 +108,7 @@ jobs:
 
               external_id: "${{ github.run_id }}",
               status: "${{steps.run_tests.outcome}}",
-              conclusion: "${{steps.run_tests.conclusion}}",
+              conclusion: "completed",
 
               output: {
                 title: "Integration Tests",
