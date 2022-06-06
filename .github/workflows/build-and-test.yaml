@@ -83,13 +83,13 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const date = new Date();
-            const resp = await github.rest.actions.listJobsForWorkflowRun({
+            const jobs = await github.rest.actions.listJobsForWorkflowRun({
               owner: context.repo.owner,
               repo: context.repo.repo,
               run_id: "${{ github.run_id }}"
             });
             console.log(">>>>>>>>>>>>>>>");
-            console.log(resp.jobs);
+            console.log(jobs[0]]);
 
             await github.rest.checks.create({
               owner: context.repo.owner,
