@@ -89,6 +89,8 @@ jobs:
               run_id: "${{ github.run_id }}"
             });
 
+            const URL = resp.data.jobs[0].html_url
+
             await github.rest.checks.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -105,6 +107,6 @@ jobs:
               output: {
                 title: "Integration Tests",
                 summary: "Build completed with ${{steps.run_tests.conclusion}}",
-                text: "Visit the link to see the result of this step. ${resp.data.jobs[0].html_url}"
+                text: "Visit the link to see the result of this step. ${URL}"
               }
             });
