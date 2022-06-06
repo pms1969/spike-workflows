@@ -107,8 +107,8 @@ jobs:
               completed_at: date.toISOString(),
 
               external_id: "${{ github.run_id }}",
-              status: "${{steps.run_tests.outcome}}",
-              conclusion: "completed",
+              status: "completed",
+              conclusion: "${{steps.run_tests.conclusion}}",
 
               output: {
                 title: "Integration Tests",
