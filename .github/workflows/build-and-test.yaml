@@ -104,7 +104,7 @@ jobs:
 
               output: {
                 title: "Integration Tests",
-                summary: "Build completed and ${{steps.run_tests.conclusion}}",
-                text: "Visit the action link to see the result of this step."
+                summary: "Build completed with ${{steps.run_tests.conclusion}}",
+                text: "Visit the link to see the result of this step. ${resp.data.jobs[0].html_url}"
               }
             });
