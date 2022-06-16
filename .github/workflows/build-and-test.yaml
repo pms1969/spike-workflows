@@ -65,11 +65,9 @@ jobs:
         run: |
           echo "env variables for DEVELOP have been set"
           echo "Changing directory into sdk directory"
-          echo URI $API_URL
-          echo TOKEN $ACCESS_TOKEN
-          echo INPUT_URI $INPUT_API_URL
-          echo INPUT_TOKEN $INPUT_ACCESS_TOKEN
           echo
+          echo Get portfolios
+          curl -X GET "${INPUT_API_URL}/api/api/portfolios" -H  "accept: text/plain" -H  "Authorization: Bearer ${INPUT_ACCESS_TOKEN}" -kvL
           echo
           cat README.md
           exit 1
