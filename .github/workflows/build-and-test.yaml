@@ -63,14 +63,14 @@ jobs:
       - name: Run tests on DEVELOP branch
         id: run_tests
         run: |
+          set -e
           echo "env variables for DEVELOP have been set"
           echo "Changing directory into sdk directory"
           echo
           echo Get portfolios
-          curl -X GET "${INPUT_API_URL}/api/api/portfolios" -H  "accept: text/plain" -H  "Authorization: Bearer ${INPUT_ACCESS_TOKEN}" -kvL
+          curl -X GET "${INPUT_API_URL}/api/portfolios" -H  "accept: text/plain" -H  "Authorization: Bearer ${INPUT_ACCESS_TOKEN}" -kL
           echo
           cat README.md
-          exit 1
         env:
           INPUT_API_URL: ${{ github.event.inputs.uri }}
           INPUT_ACCESS_TOKEN: ${{ github.event.inputs.token }}
