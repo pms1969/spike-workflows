@@ -7,19 +7,12 @@ on:
         type: string
         required: true
         description: The PR number.
-      token:
-        type: string
-        required: true
-        description: The token to use for testing. Short lived.
-      uri:
-        type: string
-        required: true
-        description: The uri to test against. Short lived.
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
     timeout-minutes: 3
+    environment: "PR-${{ github.event.inputs.pull_request }}"
 
     steps:
       - name: Checkout for SHA
@@ -72,8 +65,8 @@ jobs:
           echo
           cat README.md
         env:
-          INPUT_API_URL: ${{ github.event.inputs.uri }}
-          INPUT_ACCESS_TOKEN: ${{ github.event.inputs.token }}
+          INPUT_API_URL: ${{ secrets.URI }}
+          INPUT_ACCESS_TOKEN: ${{ secrets.TOKEN }}
 
       - name: Complete check run
         if: always()
